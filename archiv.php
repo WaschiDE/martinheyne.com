@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rechner - Martin's Webpage</title>
+		<link rel="icon" href="images/Logo.png" />
+		<link rel="stylesheet" href="style.css" />	
+		<meta charset="UTF-8">		
+	</head>
+	<body  id="top" class="body">	
+		<div  class= "header">
+			<h1><img src="images/Logo.png" alt="Waschbaer"  width="50px" height="50px">&nbsp;Willkommen auf Martin's Webpage</h1>
+		</div>			
+		<div class="topbar">			
+			<table width="75%">
+				<tr>				
+					<a href="index.php">Main</a>&nbsp;
+					<a href="about.html">AboutMe</a>&nbsp;
+					<a href="index.php#info">Informationen</a>&nbsp;					
+					<a href="index.php#foto">Bilder</a>&nbsp;
+					<a href="index.php#pinn">Pinnwand</a>&nbsp;
+					<a href="rechner.html">Rechner</a>&nbsp;
+					<a href="gallery.html">Gallery</a>						
+				</tr>
+			</table>								
+		</div>			
+		<div id="pinn" class= "roundboxbot">
+			<h2><u>Pinnwand</u></h2>
+			
+			<div class="innerroundbox">
+			<h3>Alle Einträge</h3>
+			<?php
+			
+			include 'timestamp.php';
+
+				$content = file_get_contents('pinn.txt');					
+				
+				$lines = explode("\n", $content);
+				for($i = 1; $i < count($lines) ; $i++) {  //count($lines)
+					$lines[$i] = explode('|', $lines[$i]);
+					
+					echo '<p>'.utcToLocalTime($lines[$i][3]).' || "<b>'.$lines[$i][0].'</b>" hat "<b>'.$lines[$i][2].'</b>" geschrieben</p>';
+				}
+			?>
+			
+			
+		</div>	
+		<div  class= "footer">
+		<footer>							
+			<a href="#top">Back-to-Top</a>&nbsp;
+			<a href="impressum.html">Impressum</a>&nbsp;
+			<a href="kontakt.html">Kontakt</a>&nbsp;				
+		</footer>
+		</div>		
+	</body>
+</html>
